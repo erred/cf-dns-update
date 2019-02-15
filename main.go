@@ -52,7 +52,7 @@ func main() {
 		Proxied: true,
 		TTL:     1,
 	}
-	var buf *bytes.Buffer
+	buf := &bytes.Buffer{}
 	err = json.NewEncoder(buf).Encode(up)
 	if err != nil {
 		log.Fatal("encode: ", err)
