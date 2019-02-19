@@ -9,11 +9,18 @@ Update a Cloudflare DNS record to the ip you're currently at
 
 Env vars to set:
 
-- `RECORD_NAME`: ex: sub.example.com
-- `RECORD_ID`: Cloudflare DNS Record identifier
-  - get using the list api
-- `ZONE_ID`: Cloudflare Zone identifier
-  - get from dash
+- `ZONE_NAME`
+  - set to zone name (domain)
+- `RECORD_NAME`
+  - set to the record name (sub(domain))
+- `RECORD_TYPE`
+  - set to `A` or `CNAME`
+- `REPLICAS`
+  - set to the number of simultaneous records to allow
+- `CONTENT`
+  - set to the domain for CNAMEs to point to
+- `NO_PROXY`
+  - set to `1` or `true` to bypass cloudflare's proxy
 - `X_AUTH_EMAIL`
   - Email for cloudflare api
 - `X_AUTH_KEY`
