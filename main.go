@@ -42,7 +42,7 @@ func NewConfig() *Config {
 		authEmail:  os.Getenv(XAuthEmail),
 		authKey:    os.Getenv(XAuthKey),
 		zoneName:   os.Getenv(ZoneName),
-		recordName: os.Getenv(RecordName),
+		recordName: os.Getenv(RecordName) + "." + os.Getenv(ZoneName),
 		recordType: os.Getenv(RecordType),
 		arg:        os.Getenv(Content),
 	}
