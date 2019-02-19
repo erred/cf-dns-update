@@ -57,7 +57,7 @@ func NewConfig() *Config {
 
 func (c *Config) Auth() {
 	var err error
-	c.cf, err = cloudflare.New(c.authEmail, c.authKey)
+	c.cf, err = cloudflare.New(c.authKey, c.authEmail)
 	if err != nil {
 		log.Fatal("auth: ", err)
 	}
