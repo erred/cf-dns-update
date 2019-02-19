@@ -109,7 +109,7 @@ func (c *Config) update(r cloudflare.DNSRecord, content string) error {
 func getIP() (string, error) {
 	res, err := http.Get("https://api.ipify.org?format=json")
 	if err != nil {
-		return "", fmt.Errorf("get ip from ext: ", err)
+		return "", fmt.Errorf("get ip from ext: %v", err)
 	}
 	if res.StatusCode < 200 || res.StatusCode >= 300 {
 		return "", fmt.Errorf("res status %v %v\n", res.StatusCode, res.Status)
