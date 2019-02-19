@@ -64,10 +64,6 @@ func (c *Config) Auth() {
 }
 
 func (c *Config) GetZone() {
-	if c.cf == nil {
-		c.Auth()
-	}
-
 	var err error
 	c.zoneID, err = c.cf.ZoneIDByName(c.zoneName)
 	if err != nil {
@@ -76,10 +72,6 @@ func (c *Config) GetZone() {
 }
 
 func (c *Config) GetRecords() []cloudflare.DNSRecord {
-	if c.zoneID == "" {
-		c.GetZone()
-	}
-
 	var err error
 	rs, err := c.cf.DNSRecords(c.zoneID, cloudflare.DNSRecord{
 		Type: c.recordType,
@@ -141,6 +133,8 @@ func getIP() (string, error) {
 func main() {
 	c := NewConfig()
 
+	c.Auth()
+	c.GetZone()
 	rs := c.GetRecords()
 	sort.Sort(Records(rs))
 
