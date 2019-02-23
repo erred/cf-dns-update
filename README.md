@@ -1,17 +1,25 @@
 # cf-dns-update
 
-[![Build](https://img.shields.io/badge/endpoint.svg?url=https://badger.seankhliao.com/r/github_seankhliao_cf-dns-update)](https://console.cloud.google.com/cloud-build/builds?project=com-seankhliao&query=source.repo_source.repo_name%20%3D%20%22github_seankhliao_cf-dns-update%22)
-[![License](https://img.shields.io/github/license/seankhliao/cf-dns-update.svg?style=for-the-badge)](LICENSE)
+update Cloudflare DNS A & CNAME records
 
-update Cloudflare DNS
+[![License](https://img.shields.io/github/license/seankhliao/cf-dns-update.svg?style=for-the-badge&maxAge=31536000)](LICENSE)
+[![Build](https://badger.seankhliao.com/i/github_seankhliao_cf-dns-update)](https://badger.seankhliao.com/l/github_seankhliao_cf-dns-update)
 
-modes:
+## About
+
+initContainer for deployments in my k8s [kluster](https://github.com/seankhliao/kluster) to update DNS records as deployments happen
 
 - `A`: update records to point to your current IP
   - sort existing records by age, deletes more than `REPLICAS`, updates oldest
 - `CNAME`: update records to point to `CONTENT`
 
-## Setup
+## Usage
+
+#### Prerequisites
+
+- cloudflare
+- ipify.org
+  - external ip address
 
 Env vars to set:
 
@@ -32,9 +40,18 @@ Env vars to set:
 - `X_AUTH_KEY`
   - Key for cloudflare api
 
-## External Dependencies
+#### Install
 
-- Cloudflare
-  - obviously
-- ipify.org
-  - get current ip
+go:
+
+```sh
+go get github.com/seankhliao/cf-dns-update
+```
+
+#### Run
+
+after setting all the env vars
+
+```
+cf-dns-update
+```
