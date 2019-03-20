@@ -14,12 +14,8 @@ import (
 )
 
 const (
-	ZoneName   = "ZONE_NAME"
-	RecordName = "RECORD_NAME"
-	RecordType = "RECORD_TYPE"
-	Replicas   = "REPLICAS"
-	Content    = "CONTENT"
-	NoProxy    = "NO_PROXY"
+	EnvRecord = "RECORD"
+
 	XAuthEmail = "X_AUTH_EMAIL"
 	XAuthKey   = "X_AUTH_KEY"
 )
@@ -38,18 +34,22 @@ type Config struct {
 }
 
 func NewConfig() *Config {
+	ss := strings.Split(os.Getenv(EnvRecord), ":")
+	if len(ss) != 5 {
+		log.Fatalf("expected %v to have 5 parts, got %v: %v", EnvRecord, len(ss), ss)
+	}
 	c := Config{
 		authEmail:  os.Getenv(XAuthEmail),
 		authKey:    os.Getenv(XAuthKey),
-		zoneName:   os.Getenv(ZoneName),
-		recordName: os.Getenv(RecordName) + "." + os.Getenv(ZoneName),
-		recordType: os.Getenv(RecordType),
-		arg:        os.Getenv(Content),
+		zoneName:   ss[0],
+		recordName: ss[2] + "." + ss[0],
+		recordType: ss[3],
+		arg:        ss[4],
 	}
 
-	c.argN, _ = strconv.Atoi(os.Getenv(Replicas))
-	switch strings.ToLower(os.Getenv(NoProxy)) {
-	case "true", "1":
+	c.argN, _ = strconv.Atoi(ss[4])
+	switch strings.ToLower(ss[2]) {
+	case "noproxy":
 		c.noProxy = true
 	}
 	return &c

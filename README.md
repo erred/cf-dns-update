@@ -23,6 +23,13 @@ initContainer for deployments in my k8s [kluster](https://github.com/seankhliao/
 
 Env vars to set:
 
+```
+RECORD=seankhliao.com::badger:CNAME:kluster.seankhliao.com
+RECORD=seankhliao.com:noproxy:wg:CNAME:kluster.seankhliao.com
+RECORD=seankhliao.com::kluster:A:1
+RECORD = [zone] : [proxy] : [name] : [type] : [content / replicas]
+```
+
 - `ZONE_NAME`
   - set to zone name (domain), ex: example.com
 - `RECORD_NAME`
