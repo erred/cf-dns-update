@@ -28,32 +28,10 @@ RECORD=seankhliao.com::badger:CNAME:kluster.seankhliao.com
 RECORD=seankhliao.com:noproxy:wg:CNAME:kluster.seankhliao.com
 RECORD=seankhliao.com::kluster:A:1
 RECORD = [zone] : [proxy] : [name] : [type] : [content / replicas]
-```
 
-- `ZONE_NAME`
-  - set to zone name (domain), ex: example.com
-- `RECORD_NAME`
-  - set to the record name (sub(domain)), ex: www
-- `RECORD_TYPE`
-  - set to `A` or `CNAME`
-- `REPLICAS`
-  - (only for A) set to the number of simultaneous records to allow
-- `CONTENT`
-  - (only for CNAME) set to the domain for CNAMEs to point to
-- `NO_PROXY`
-  - set to `1` or `true` to bypass cloudflare's proxy
-- `X_AUTH_EMAIL`
-  - Email for cloudflare api
-- `X_AUTH_KEY`
-  - Key for cloudflare api
-
-#### Install
-
-go:
-
-```sh
-go get github.com/seankhliao/cf-dns-update
-```
+X_AUTH_EMAIL = Email for cloudflare api
+X_AUTH_KEY = Api key for cloudflare api
+````
 
 #### Run
 
