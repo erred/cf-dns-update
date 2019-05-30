@@ -48,7 +48,7 @@ func NewConfig() *Config {
 	}
 
 	c.argN, _ = strconv.Atoi(ss[4])
-	switch strings.ToLower(ss[2]) {
+	switch strings.ToLower(ss[1]) {
 	case "noproxy":
 		c.noProxy = true
 	}
